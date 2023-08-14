@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ lesson.title }}</title>
+</head>
+<body>
+    <h1>{{ lesson.title }}</h1>
+    <p>{{ lesson.content}}</p>
+
+    <h2>Материалы</h2>
+    <ul>
+        {% for material in lesson.material_set.all %}
+            <li>{{ material.title }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

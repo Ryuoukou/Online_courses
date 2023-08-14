@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+    <title>Главная страница</title>
+</head>
+<body>
+    <h1>Добро пожаловать на главную страницу</h1>
+    {% if user.is_authenticated %}
+        <p>Вы вошли в систему как {{ user.first_name }} {{ user.last_name }}</p>
+        <a href="{% url 'courses:logout' %}">Log out</a>
+    {% else %}
+        <a href="{% url 'courses:login' %}">Log in</a>
+    {% endif %}
+    <ul>
+        <li><a href="{% url 'courses:create_course' %}">Создать курс</a></li>
+        <li><a href="{% url 'courses:course_list' %}">Просмотреть курсы</a></li>
+        {% if user.is_authenticated %}
+        {% for course in courses %}
+            <li><a href="{% url 'courses:create_lesson' course.id %}">Создать урок</a></li>
+            <li><a href="{% url 'courses:lesson_detail' course.id %}">Детали урока</a></li>
+        {% endfor %}
+            <li><a href="{% url 'courses:logout' %}">Log out</a></li>
+        {% else %}
+            <li><a href="{% url 'courses:login' %}">Log in</a></li>
+        {% endif %}
+
+    </ul>
+    {% block content %}{% endblock %}
+</body>
+</html>

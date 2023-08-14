@@ -1,0 +1,16 @@
+{% extends 'courses/home.html' %}
+
+{% block content %}
+    {% if not user.is_authenticated %}
+        <h2>Вход в систему</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.username.label_tag }}
+            {{ form.username }}
+            {{ form.password.label_tag }}
+            {{ form.password }}
+            {{ form.remember_me }} {{ form.remember_me.label_tag }}
+            <button type="submit">Войти</button>
+        </form>
+    {% endif %}
+{% endblock %}

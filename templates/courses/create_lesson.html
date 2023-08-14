@@ -1,0 +1,16 @@
+{% extends 'courses/course_detail.html' %}
+
+{% block content %}
+    <h2>Создание урока для курса "{{ course.title }}"</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{  form.title.label_tag }}
+        {{ form.title }}
+        {{ form.content.label_tag }}
+        {{ form.content }}
+        {{ form.order.label_tag }}
+        {{ form.order }}
+        <button type="submit">Создать урок</button>
+    </form>
+    <a href="{% url 'courses:course_detail' course_id=course.id %}">Назад к курсу</a>
+{% endblock %}

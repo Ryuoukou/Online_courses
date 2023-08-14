@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список Курсов</title>
+</head>
+<body>
+    <h1>Список курсов</h1>
+    <ul>
+        {% for course in courses %}
+            <li><a href="{% url 'courses:course_detail' course.id %}">{{ course.title }}</a> </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
